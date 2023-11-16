@@ -17,6 +17,7 @@
             //extend by function call
             self.settings = $.extend(true, {
                 duration: 1.5,
+                direction: '',
                 shift: 10,
                 events: ['scroll', 'gyro'],
                 gyroSensitivity: 30
@@ -64,7 +65,12 @@
         refresh() {
             let self = this;
 
-            self.animate(self.getElementAnimatePosition());
+            if (self.settings.direction == 'reverse') {
+				self.animate(-1 * (self.getElementAnimatePosition()));
+			}
+            else {
+                self.animate(self.getElementAnimatePosition());
+            }
         }
 
         updateTrigger() {
@@ -118,7 +124,12 @@
             $(window).on('scroll resize', function () {
                 if (!self.state.isOnScreen) return;
 
-                self.animate(self.getElementAnimatePosition());
+                if (self.settings.direction == 'reverse') {
+					self.animate(-1 * (self.getElementAnimatePosition()));
+				}
+				else {
+					self.animate(self.getElementAnimatePosition());
+				}
             })
         }
 

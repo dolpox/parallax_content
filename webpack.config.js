@@ -1,5 +1,4 @@
 module.exports = {
-    watch: true,
     entry: './src/parallax_content.es6',
     output: {
         filename: 'build/parallax_content.js'

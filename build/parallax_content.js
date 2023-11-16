@@ -95,6 +95,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             //extend by function call
             self.settings = $.extend(true, {
                 duration: 1.5,
+                direction: '',
                 shift: 10,
                 events: ['scroll', 'gyro'],
                 gyroSensitivity: 30
@@ -144,7 +145,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             value: function refresh() {
                 var self = this;
 
-                self.animate(self.getElementAnimatePosition());
+                if (self.settings.direction == 'reverse') {
+                    self.animate(-1 * self.getElementAnimatePosition());
+                } else {
+                    self.animate(self.getElementAnimatePosition());
+                }
             }
         }, {
             key: 'updateTrigger',
@@ -198,7 +203,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 $(window).on('scroll resize', function () {
                     if (!self.state.isOnScreen) return;
 
-                    self.animate(self.getElementAnimatePosition());
+                    if (self.settings.direction == 'reverse') {
+                        self.animate(-1 * self.getElementAnimatePosition());
+                    } else {
+                        self.animate(self.getElementAnimatePosition());
+                    }
                 });
             }
         }, {
